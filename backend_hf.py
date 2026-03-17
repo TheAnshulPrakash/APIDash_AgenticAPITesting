@@ -7,7 +7,7 @@ import uvicorn
 app = FastAPI(title="Agentic API Tester Engine")
 
 class APIRequest(BaseModel):
-    method: str  # GET, POST, PUT, DELETE
+    method: str 
     url: HttpUrl
     headers: Optional[Dict[str, str]] = None
     body: Optional[Dict[str, Any]] = None
@@ -18,9 +18,7 @@ def read_root():
 
 @app.post("/execute")
 async def execute_api_call(request_data: APIRequest):
-    """
-    Executes a dynamic API call requested by the agent or Flutter frontend.
-    """
+   
     async with httpx.AsyncClient() as client:
         try:
             # Prepare the request
@@ -31,7 +29,6 @@ async def execute_api_call(request_data: APIRequest):
                 json=request_data.body
             )
             
-            # Return the results for the agent to analyze
             return {
                 "status_code": response.status_code,
                 "headers": dict(response.headers),
