@@ -1,4 +1,4 @@
-## UI Images of the UI
+## UI Images of the workflow
 ### For Project Idea #4 Agentic API Testing
 
 Workflow Image
