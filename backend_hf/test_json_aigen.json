@@ -1,29 +1,165 @@
 {
-  "candidates": [
-    {
-      "content": {
-        "parts": [
-          {
-            "text": "{\n    \"tests\": [\n        {\n            \"name\": \"health_check_get_success\",\n            \"description\": \"Check if the API health check endpoint is working\",\n            \"method\": \"GET\",\n            \"path\": \"/\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {},\n            \"body\": {},\n            \"expected_status\": 200,\n            \"tags\": [\n                \"happy_path\"\n            ]\n        },\n        {\n            \"name\": \"create_user_success\",\n            \"description\": \"Successfully create a new user\",\n            \"method\": \"POST\",\n            \"path\": \"/users\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"name\": \"John Doe\",\n                \"email\": \"john.doe@example.com\"\n            },\n            \"expected_status\": 201,\n            \"tags\": [\n                \"happy_path\"\n            ]\n        },\n        {\n            \"name\": \"create_user_validation_error_missing_email\",\n            \"description\": \"Attempt to create a user with a missing email\",\n            \"method\": \"POST\",\n            \"path\": \"/users\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"name\": \"John Doe\"\n            },\n            \"expected_status\": 422,\n            \"tags\": [\n                \"validation\"\n            ]\n        },\n        {\n            \"name\": \"create_user_validation_error_invalid_email\",\n            \"description\": \"Attempt to create a user with an invalid email format\",\n            \"method\": \"POST\",\n            \"path\": \"/users\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"name\": \"John Doe\",\n                \"email\": \"invalid-email\"\n            },\n            \"expected_status\": 422,\n            \"tags\": [\n                \"validation\"\n            ]\n        },\n        {\n            \"name\": \"list_books_success\",\n            \"description\": \"Successfully list all available books\",\n            \"method\": \"GET\",\n            \"path\": \"/books\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {},\n            \"body\": {},\n            \"expected_status\": 200,\n            \"tags\": [\n                \"happy_path\"\n            ]\n        },\n        {\n            \"name\": \"add_book_success\",\n            \"description\": \"Successfully add a new book to the library\",\n            \"method\": \"POST\",\n            \"path\": \"/books\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"title\": \"The Hitchhiker's Guide to the Galaxy\",\n                \"author\": \"Douglas Adams\"\n            },\n            \"expected_status\": 201,\n            \"tags\": [\n                \"happy_path\"\n            ]\n        },\n        {\n            \"name\": \"add_book_validation_error_missing_title\",\n            \"description\": \"Attempt to add a book with a missing title\",\n            \"method\": \"POST\",\n            \"path\": \"/books\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"author\": \"Douglas Adams\"\n            },\n            \"expected_status\": 422,\n            \"tags\": [\n                \"validation\"\n            ]\n        },\n        {\n            \"name\": \"borrow_book_success\",\n            \"description\": \"Successfully borrow a book\",\n            \"method\": \"POST\",\n            \"path\": \"/borrow\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"user_id\": 1,\n                \"book_id\": 101\n            },\n            \"expected_status\": 200,\n            \"tags\": [\n                \"happy_path\"\n            ]\n        },\n        {\n            \"name\": \"borrow_book_validation_error_missing_user_id\",\n            \"description\": \"Attempt to borrow a book with a missing user_id\",\n            \"method\": \"POST\",\n            \"path\": \"/borrow\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"book_id\": 101\n            },\n            \"expected_status\": 422,\n            \"tags\": [\n                \"validation\"\n            ]\n        },\n        {\n            \"name\": \"borrow_book_validation_error_invalid_book_id_type\",\n            \"description\": \"Attempt to borrow a book with an invalid book_id type\",\n            \"method\": \"POST\",\n            \"path\": \"/borrow\",\n            \"path_params\": {},\n            \"query_params\": {},\n            \"headers\": {\n                \"Content-Type\": \"application/json\"\n            },\n            \"body\": {\n                \"user_id\": 1,\n                \"book_id\": \"invalid-id\"\n            },\n            \"expected_status\": 422,\n            \"tags\": [\n                \"validation\"\n            ]\n        }\n    ]\n}"
-          }
-        ],
-        "role": "model"
-      },
-      "finishReason": "STOP",
-      "index": 0
-    }
-  ],
-  "usageMetadata": {
-    "promptTokenCount": 3152,
-    "candidatesTokenCount": 1374,
-    "totalTokenCount": 4526,
-    "promptTokensDetails": [
-      {
-        "modality": "TEXT",
-        "tokenCount": 3152
-      }
+    "tests": [
+        {
+            "name": "health_check_get_success",
+            "description": "Check if the API is healthy",
+            "method": "GET",
+            "path": "/",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {},
+            "expected_status": 200,
+            "tags": [
+                "happy_path"
+            ]
+        },
+        {
+            "name": "create_user_success",
+            "description": "Successfully create a new user",
+            "method": "POST",
+            "path": "/users",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "name": "John Doe",
+                "email": "john.doe@example.com"
+            },
+            "expected_status": 201,
+            "tags": [
+                "happy_path"
+            ]
+        },
+        {
+            "name": "create_user_validation_error_missing_email",
+            "description": "Attempt to create a user with a missing email",
+            "method": "POST",
+            "path": "/users",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "name": "John Doe"
+            },
+            "expected_status": 422,
+            "tags": [
+                "validation"
+            ]
+        },
+        {
+            "name": "create_user_validation_error_invalid_email",
+            "description": "Attempt to create a user with an invalid email format",
+            "method": "POST",
+            "path": "/users",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "name": "John Doe",
+                "email": "invalid-email"
+            },
+            "expected_status": 422,
+            "tags": [
+                "validation"
+            ]
+        },
+        {
+            "name": "list_books_success",
+            "description": "Successfully list all books",
+            "method": "GET",
+            "path": "/books",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {},
+            "expected_status": 200,
+            "tags": [
+                "happy_path"
+            ]
+        },
+        {
+            "name": "add_book_success",
+            "description": "Successfully add a new book",
+            "method": "POST",
+            "path": "/books",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "title": "The Hitchhiker's Guide to the Galaxy",
+                "author": "Douglas Adams"
+            },
+            "expected_status": 201,
+            "tags": [
+                "happy_path"
+            ]
+        },
+        {
+            "name": "add_book_validation_error_missing_author",
+            "description": "Attempt to add a book with a missing author",
+            "method": "POST",
+            "path": "/books",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "title": "The Hitchhiker's Guide to the Galaxy"
+            },
+            "expected_status": 422,
+            "tags": [
+                "validation"
+            ]
+        },
+        {
+            "name": "borrow_book_success",
+            "description": "Successfully borrow a book",
+            "method": "POST",
+            "path": "/borrow",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "user_id": 1,
+                "book_id": 101
+            },
+            "expected_status": 200,
+            "tags": [
+                "happy_path"
+            ]
+        },
+        {
+            "name": "borrow_book_validation_error_missing_book_id",
+            "description": "Attempt to borrow a book with a missing book_id",
+            "method": "POST",
+            "path": "/borrow",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "user_id": 1
+            },
+            "expected_status": 422,
+            "tags": [
+                "validation"
+            ]
+        },
+        {
+            "name": "borrow_book_validation_error_invalid_user_id_type",
+            "description": "Attempt to borrow a book with an invalid type for user_id",
+            "method": "POST",
+            "path": "/borrow",
+            "path_params": {},
+            "query_params": {},
+            "headers": {},
+            "body": {
+                "user_id": "invalid-id",
+                "book_id": 101
+            },
+            "expected_status": 422,
+            "tags": [
+                "validation"
+            ]
+        }
     ]
-  },
-  "modelVersion": "gemini-2.5-flash-lite",
-  "responseId": "4QLFaayaMp2yjuMPg9COQQ"
 }
